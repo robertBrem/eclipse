@@ -1,8 +1,9 @@
 #!/usr/bin/jjs -fv
 
-init();
+installPlugins();
+setUpLombok();
 
-function init() {
+function installPlugins() {
   var result = load("eclipseInput.json");
 
   for(key in result) {
@@ -10,5 +11,19 @@ function init() {
     print(command);
     $EXEC(command)
     print($OUT);
+  }
+}
+
+function setUpLombok() {
+  var envs = $ENV;
+  var doLombok = envs['LOMBOK'] == 1
+  print('doLombok: ' + doLombok);
+  if(doLombok) {
+    var downloadCommand = 'curl -O https://projectlombok.org/downloads/lombok.jar'
+    var addToEclipseIniCommand = 'echo "-javaagent:/opt/eclipse/lombok.jar" >> eclipse.ini'
+    print(downloadCommand);
+    $EXEC(downloadCommand);
+    print(addToEclipseIniCommand);
+    $EXEC(addToEclipseIniCommand);
   }
 }
