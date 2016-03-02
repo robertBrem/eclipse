@@ -2,7 +2,7 @@
 
 ## Description
 This docker image provides eclipse with additional plug-ins and Lombok. It's based on [iwakoshi/eclipse](https://github.com/iwakoshi/eclipse). If you don't need plug-ins or lombok use [iwakoshi/eclipse](https://github.com/iwakoshi/eclipse) instead.  
-If you use this image without rebuilding [subclipse](http://subclipse.tigris.org/) is the only plug-in that is installed. To use lombok or other plug-ins you have to rebuild the image.
+If you use this image without rebuilding, [subclipse](http://subclipse.tigris.org/) is the only plug-in that is installed. To use Lombok or other plug-ins you have to rebuild the image.
 
 ## Usage
 ```bash
