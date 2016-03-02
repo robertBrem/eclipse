@@ -32,7 +32,9 @@ In the following i describe my way to find out the repositories and plug-in name
 
 ##### Add plug-in in eclipse
 Go to `Help - Eclipse Marketplace` and search for your plug-in. Then install it over the Marketplace.
+![alt tag](installWeblogicTools.png)
 
+After the installation you have to go to `Help - About Eclipse - Installation Details`
 
 ## Tested with
 * [subclipse](http://subclipse.tigris.org/)
