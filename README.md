@@ -24,15 +24,15 @@ docker build --tag=robertbrem/eclipseWithLombok --build-arg LOMBOK=1 .
 
 ### Add another plug-in
 To add a new plug-in you have to build the docker image by yourself.  
-Firt of all you have to know two things: The **repositories** and the **plug-in name**.  
+First of all you have to know two things: The **repositories** and the **plug-in name**.  
 You have to extend the `eclipseInput.json` file with this information.  
 Then you can build the docker image by yourself:
 ```bash
-docker build --tag=robertbrem/eclipseWithLombok .
+docker build --tag=robertbrem/eclipseWithPlugins .
 ```
 Or with Lombok enabled:
 ```bash
-docker build --tag=robertbrem/eclipseWithLombok --build-arg LOMBOK=1 .
+docker build --tag=robertbrem/eclipseWithPluginsAndLombok --build-arg LOMBOK=1 .
 ```
 
 If you have a closer look at this file you will notice that it is a json array in an array, literally a map. For each entry the `Dockerfile` calls an install plug-in command. An entry consists of the two already mentioned parts (repositories and plug-in name). The initial `eclipseInput.json` file from this repository contains the entries to use [subclipse](http://subclipse.tigris.org/). It needs three plug-ins.
@@ -56,7 +56,7 @@ If you find the name of plug-in in this list you are perfectly right. Some plug-
 ```bash
 ./eclipse -nosplash -application org.eclipse.equinox.p2.director -repository http://download.oracle.com/otn_software/oepe/12.2.1.2/mars/repository -installIU oracle.eclipse.tools.weblogic.feature.group
 ```
-If the installation fail, the missing plug-in name is displayed in the error. Then I searched this plug-in in the referenced dependencies (http://download.oracle.com/otn_software/oepe/12.2.1/mars/content.html) and added the found repository to the installation command. I ended up with the following working installation command for the Weblogic Tools plug-in:
+If the installation fail, the missing plug-in name is displayed in the error. Then I searched for this plug-in in the referenced dependencies (http://download.oracle.com/otn_software/oepe/12.2.1/mars/content.html) and added the found repository to the installation command. I ended up with the following working installation command for the Weblogic Tools plug-in:
 ```bash
 ./eclipse -nosplash -application org.eclipse.equinox.p2.director -repository http://download.oracle.com/otn_software/oepe/library/eclipse-sapphire-9.0.4,http://download.oracle.com/otn_software/oepe/library/jersey-1.17.1-p002,http://download.oracle.com/otn_software/oepe/library/jackson-1.9.13,http://download.oracle.com/otn_software/oepe/12.2.1.2/mars/repository -installIU oracle.eclipse.tools.weblogic.feature.group
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0
@@ -74,7 +74,7 @@ Now I have all the needed information and can create a new json entry in the `ec
 ]
 ```
 
-**HINT:** Sometimes the repositories are not only really slow they are also down.
+**HINT:** Sometimes the repositories are not only really slow they are down as well.
 
 ## Tested with
 * [subclipse](http://subclipse.tigris.org/)
