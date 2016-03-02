@@ -21,5 +21,3 @@ RUN echo "-javaagent:/opt/eclipse/lombok.jar" >> eclipse.ini
 USER root
 RUN apt-get purge -y curl && apt-get autoremove -y && apt-get -y clean && rm -rf /var/lib/apt/lists/*
 USER eclipse
-
-WORKDIR ~/
